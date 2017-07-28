@@ -8,6 +8,15 @@ namespace core
 {
     public class UserTransactionService
     {
+        // get single user
+        public User GetUser(long id)
+        {
+			using (var db = new AppDbContext())
+			{
+                return db.Users.FirstOrDefault(x => x.Id == id);
+			}
+        }
+
         // get all users
         public IEnumerable<User> GetUsers()
         {

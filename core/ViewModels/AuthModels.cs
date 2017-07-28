@@ -18,6 +18,7 @@ namespace core
             public bool Success { get; set; }
 			public string Errors { get; set; }
             public Guid AuthKey { get; set; }
+            public long UserId { get; set; }
 		}
     }
 }

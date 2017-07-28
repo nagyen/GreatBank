@@ -101,7 +101,8 @@ namespace core
 				return new AuthModels.LoginFeedback()
 				{
                     Success = true,
-                    AuthKey = auth.AuthKey
+                    AuthKey = auth.AuthKey,
+                    UserId = user.Id
 				};
 			}
         }
@@ -125,21 +126,31 @@ namespace core
         // logout user
         public void Logout(string username)
         {
-			using (var db = new AppDbContext())
-			{
+            using (var db = new AppDbContext())
+            {
                 var user = db.Users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower());
-                if(user != null)
+                if (user != null)
                 {
                     var auth = db.Auths.FirstOrDefault(x => x.UserId == user.Id);
-					// check if exists
-					if (auth != null)
-					{
-						// remove authentication
-						db.Remove(auth);
-						db.SaveChanges();
-					}
+                    // check if exists
+                    if (auth != null)
+                    {
+                        // remove authentication
+                        db.Remove(auth);
+                        db.SaveChanges();
+                    }
                 }
-				
+
+            }
+        }
+
+        // functtion to check if a user is authenticated
+        public bool IsAuthenticated(Guid authKey)
+        {
+			using (var db = new AppDbContext())
+			{
+                var auth = db.Auths.FirstOrDefault(x => x.AuthKey == authKey);
+                return auth != null;
 			}
         }
     }

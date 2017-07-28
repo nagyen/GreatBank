@@ -3,8 +3,10 @@ namespace console_app
 {
     public class HomeScreen: BaseScreen
     {
-        public override void Run()
+        public override void Run(bool clearScreen = true)
         {
+            Console.Clear();
+            Console.WriteLine("Welcome to Great Bank!\n");
 			Console.WriteLine("1. Register");
 			Console.WriteLine("2. Login");
 
@@ -17,6 +19,11 @@ namespace console_app
                             new RegisterScreen().Run();
                             break; 
                         }
+					case 2:
+						{
+                            new LoginScreen().Run();
+							break;
+						}
                     default:
                         {
                             ShowInvalidOptionError();

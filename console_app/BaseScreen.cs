@@ -6,9 +6,9 @@ namespace console_app
         public void ShowInvalidOptionError()
         {
             Console.WriteLine("Invalid option. Please select valid option\n");
-            Run();
+            Run(false);
         }
 
-        public abstract void Run();
+        public abstract void Run(bool clearScreen = true);
     }
 }
