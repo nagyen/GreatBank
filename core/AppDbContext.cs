@@ -14,5 +14,8 @@ namespace core
 		public DbSet<User> Users { get; set; }
 
         public DbSet<Transaction> Transactions { get; set; }
-    }
+
+		public DbSet<Auth> Auths { get; set; }
+
+	}
 }

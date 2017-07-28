@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using core.DbModels;
 
-namespace core.Services
+namespace core
 {
     public class UserTransactionService
     {

@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="DbModels\" />
     <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Program.cs" />
