@@ -6,25 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using core;
 namespace web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public AuthService Authservice { get; set; }
-
-        public HomeController()
-        {
-            Authservice = new AuthService();
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody]core.DbModels.User user)
+        public IActionResult Login([FromBody]AuthModels.LoginRegister login)
 		{
-            var res = this.Authservice.Login(user.Username, user.Password);
-            return Json(res);
+            // login 
+            var res = this.Authservice.Login(login.Username, login.Password);
+            if(res.Success)
+            {
+                // set auth key for session
+                SetAuth(res.UserId, res.AuthKey);
+
+                return SuccessResponse("/account");
+            }
+            // return error
+            return ErrorResponse(res.Errors);
 		}
 
         public IActionResult Error()

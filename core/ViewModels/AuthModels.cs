@@ -20,5 +20,13 @@ namespace core
             public Guid AuthKey { get; set; }
             public long UserId { get; set; }
 		}
+
+        // register/login user
+        public class LoginRegister
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+            public string ConfirmPassword { get; set; }
+        }
     }
 }
