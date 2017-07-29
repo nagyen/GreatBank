@@ -19,7 +19,7 @@ namespace core.DbModels
         public enum TransactionType
         {
             Deposit = 0,
-            Withdrawl = 1
+            Withdrawal = 1
         }
 
         // helpers

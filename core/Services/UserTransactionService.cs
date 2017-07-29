@@ -26,6 +26,12 @@ namespace core
             }
         }
 
+        // get current balance for user
+        public decimal GetCurrentBalanceForUser(long userId)
+        {
+            return GetLastTransactionForUser(userId)?.CurrentBalance ?? 0;
+        }
+
         // get most recent transaction for user
         public Transaction GetLastTransactionForUser(long userId)
         {
@@ -57,30 +63,60 @@ namespace core
 		}
 
         // deposit
-        public void Deposit(long userId, decimal amount)
+        public TransactionModels.TransactionFeedback Deposit(long userId, decimal amount)
         {
-            AddTransaction(userId, amount, Transaction.TransactionType.Deposit);
+            return AddTransaction(userId, amount, Transaction.TransactionType.Deposit);
         }
 
 		// withdrawl
-		public void Withdraw(long userId, decimal amount)
+		public TransactionModels.TransactionFeedback Withdraw(long userId, decimal amount)
 		{
-            AddTransaction(userId, amount, Transaction.TransactionType.Withdrawl);
+            return AddTransaction(userId, amount, Transaction.TransactionType.Withdrawal);
 		}
 
         // funciton that creates a transaction for user
-        private void AddTransaction(long userId, decimal amount, Transaction.TransactionType transactionType)
+        private TransactionModels.TransactionFeedback AddTransaction(long userId, decimal amount, Transaction.TransactionType transactionType)
         {
 			// amount should be positive
-			if (amount < 0) return;
+			if (amount < 0)
+            {
+				// return error
+				return new TransactionModels.TransactionFeedback
+				{
+					Success = false,
+					Errors = "Amount should be more than 0",
+					TransactionType = transactionType
+				};
+            }
 
 			// check if user valid
 			var user = GetUser(userId);
-			if (user == null) return;
+			if (user == null)
+            {
+				// return error
+				return new TransactionModels.TransactionFeedback
+				{
+					Success = false,
+					Errors = "Cannot validate user.",
+					TransactionType = transactionType
+				};
+            }
 
 			// create withdraw transaction for user 
 			var prevTrans = GetLastTransactionForUser(userId);
             var prevBalance = prevTrans?.CurrentBalance ?? 0;
+            // check if new balance is below limit
+            var currBal = prevBalance + (transactionType == Transaction.TransactionType.Deposit ? amount : -amount);
+            if(currBal < 0)
+            {
+                // return error
+                return new TransactionModels.TransactionFeedback
+                {
+                    Success = false,
+                    Errors = "Cannot withdraw more than available balance.",
+                    TransactionType = transactionType
+                };
+            }
 			var transaction = new Transaction
 			{
 				UserId = userId,
@@ -88,7 +124,7 @@ namespace core
                 Type = (int)transactionType,
 				Amount = amount,
                 PrevBalance = prevBalance,
-                CurrentBalance = prevBalance + (transactionType == Transaction.TransactionType.Deposit ? amount : -amount)
+                CurrentBalance = currBal
 			};
 
 			//add
@@ -97,6 +133,13 @@ namespace core
 				db.Transactions.Add(transaction);
 				db.SaveChanges();
 			}
+
+            // return 
+			return new TransactionModels.TransactionFeedback
+			{
+                Success = true,
+				TransactionType = transactionType
+			};
         }
     }
 }

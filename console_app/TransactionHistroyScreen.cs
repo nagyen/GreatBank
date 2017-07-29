@@ -12,7 +12,7 @@ namespace console_app
 
         public override void Run(bool clearScreen = true)
         {
-            ShowTransactions(1);
+            ShowTransactions();
         }
 
         protected void ShowTransactions(int page = 1)
@@ -23,7 +23,7 @@ namespace console_app
             var table = new ConsoleTable("Date", "Type", "Amount", "Balance");
             foreach(var trans in transactions)
             {
-                table.AddRow($"{trans.Date:MM/dd/yyyy hh:mm tt}", $"{trans.GetTransactionType().ToString()}", $"{trans.Amount}", $"{trans.CurrentBalance}");
+                table.AddRow($"{trans.Date:MM/dd/yyyy hh:mm:ss tt}", $"{trans.GetTransactionType().ToString()}", $"{trans.Amount}", $"{trans.CurrentBalance}");
             }
             table.Write();
             Console.WriteLine($" Current Page: {page}");

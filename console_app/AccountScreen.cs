@@ -26,19 +26,28 @@ namespace console_app
 			Console.WriteLine("4. Transaction History");
             Console.WriteLine("5. Logout");
 
-
+            Console.Write("\nPlease enter your choice: ");
 			if (Int32.TryParse(Console.ReadLine(), out int input))
 			{
 				switch (input)
 				{
 					case 1:
 						{
-							new RegisterScreen().Run();
+                            var currBal = UserTransactionService.GetCurrentBalanceForUser(User.Id);
+                            Console.WriteLine($"Your Current Balance is {currBal:C}");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadLine();
+                            Run();
 							break;
 						}
 					case 2:
 						{
-							new LoginScreen().Run();
+                            new DepositScreen(User.Id, AuthKey).Run();
+							break;
+						}
+					case 3:
+						{
+							new WithdrawalScreen(User.Id, AuthKey).Run();
 							break;
 						}
 					case 4:
