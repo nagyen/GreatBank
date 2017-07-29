@@ -4,20 +4,10 @@ using core.DbModels;
 
 namespace console_app
 {
-    public class AccountScreen: BaseScreen
+    public class AccountScreen: BaseAccountScreen
     {
-        private User User { get; set; }
-        private Guid AuthKey { get; set; }
-        private AuthService AuthService { get; set; }
-        private UserTransactionService UserTransactionService { get; set; }
-
-        public AccountScreen(long userId, Guid authKey)
+        public AccountScreen(long userId, Guid authKey): base(userId, authKey)
         {
-            UserTransactionService = new UserTransactionService();
-            this.User = UserTransactionService.GetUser(userId);
-
-			this.AuthKey = authKey;
-			AuthService = new AuthService();
         }
 
 		public override void Run(bool clearScreen = true)
@@ -49,6 +39,11 @@ namespace console_app
 					case 2:
 						{
 							new LoginScreen().Run();
+							break;
+						}
+					case 4:
+						{
+                            new TransactionHistoryScreen(User.Id, AuthKey).Run();
 							break;
 						}
 					default:
