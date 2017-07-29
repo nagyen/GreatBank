@@ -9,7 +9,8 @@ namespace console_app
             Console.WriteLine("Welcome to Great Bank!\n");
 			Console.WriteLine("1. Register");
 			Console.WriteLine("2. Login");
-
+			Console.WriteLine("3. Exit");
+            Console.Write("\nPlease enter your choice: ");
 			if (Int32.TryParse(Console.ReadLine(), out int input))
 			{
                 switch(input)
@@ -22,6 +23,11 @@ namespace console_app
 					case 2:
 						{
                             new LoginScreen().Run();
+							break;
+						}
+					case 3:
+						{
+                            Environment.Exit(0);
 							break;
 						}
                     default:

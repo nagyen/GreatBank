@@ -107,7 +107,7 @@ namespace core
 			}
         }
 
-        // logout authkey
+        // logout current session using authkey
         public void Logout(Guid authkey)
         {
             using(var db = new AppDbContext())
@@ -123,7 +123,7 @@ namespace core
             }
         }
 
-        // logout user
+        // logout all user sessions by user name
         public void Logout(string username)
         {
             using (var db = new AppDbContext())
@@ -131,18 +131,27 @@ namespace core
                 var user = db.Users.FirstOrDefault(x => x.Username.ToLower() == username.ToLower());
                 if (user != null)
                 {
-                    var auth = db.Auths.FirstOrDefault(x => x.UserId == user.Id);
-                    // check if exists
-                    if (auth != null)
-                    {
-                        // remove authentication
-                        db.Remove(auth);
-                        db.SaveChanges();
-                    }
+                    Logout(user.Id);
                 }
 
             }
         }
+
+		// logout all user sessions by id
+		public void Logout(long userId)
+		{
+			using (var db = new AppDbContext())
+			{
+				var auth = db.Auths.FirstOrDefault(x => x.UserId == userId);
+				// check if exists
+				if (auth != null)
+				{
+					// remove authentication
+					db.Remove(auth);
+					db.SaveChanges();
+				}
+			}
+		}
 
         // functtion to check if a user is authenticated
         public bool IsAuthenticated(Guid authKey)

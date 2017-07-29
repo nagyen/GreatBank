@@ -55,6 +55,12 @@ namespace console_app
                             new TransactionHistoryScreen(User.Id, AuthKey).Run();
 							break;
 						}
+					case 5:
+						{
+                            AuthService.Logout(User.Id);
+                            new HomeScreen().Run();
+							break;
+						}
 					default:
 						{
 							ShowInvalidOptionError();

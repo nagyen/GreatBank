@@ -23,7 +23,7 @@ namespace console_app
             var table = new ConsoleTable("Date", "Type", "Amount", "Balance");
             foreach(var trans in transactions)
             {
-                table.AddRow($"{trans.Date:MM/dd/yyyy hh:mm:ss tt}", $"{trans.GetTransactionType().ToString()}", $"{trans.Amount}", $"{trans.CurrentBalance}");
+                table.AddRow($"{trans.Date:MM/dd/yyyy hh:mm:ss tt}", $"{trans.GetTransactionType().ToString()}", $"{trans.Amount:C}", $"{trans.CurrentBalance:C}");
             }
             table.Write();
             Console.WriteLine($" Current Page: {page}");
