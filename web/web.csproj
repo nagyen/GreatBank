@@ -17,4 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\core\core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="wwwroot\lib\angular\index.js" />
+  </ItemGroup>
 </Project>

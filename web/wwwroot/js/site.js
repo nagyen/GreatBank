@@ -1,1 +1,2 @@
-﻿// Write your Javascript code.
+﻿//init angular app
+var module = angular.module("app", []);
