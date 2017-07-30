@@ -36,8 +36,7 @@ The application uses Entity Framework Core In-Memory database.
 ## Environment
 The application is written using .NET Core(console app), ASP.NET MVC Core(web app), Entity Framework Core.
 
-## Steps to run applications locally
-(Requires dotnet core environement installed on computer)
+## Steps to run applications locally (Requires dotnet core environement installed on computer)
 * Console App: Run any of the following commands from project root 
     - $ sh run-console.sh
     or
@@ -47,8 +46,7 @@ The application is written using .NET Core(console app), ASP.NET MVC Core(web ap
     or
     - $ dotnet restore && cd ./web && dotnet run
 
-## Steps to run applications using docker
-(Requires docker installed on computer)
+## Steps to run applications using docker (Requires docker installed on computer)
 * Console App: Run any of the following commands from project root 
     - $ docker run --rm -it nyendluri/greatbank-console:latest
 * Web App: Run any of the following commands from project root 
