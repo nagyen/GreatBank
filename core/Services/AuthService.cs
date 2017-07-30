@@ -73,7 +73,7 @@ namespace core
 					return new AuthModels.LoginFeedback
 					{
 						Success = false,
-                        Errors = $"Cannot find user {username}."
+                        Errors = $"Cannot find user {username}. Please register before logging in."
 					};
 				}
 

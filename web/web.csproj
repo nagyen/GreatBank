@@ -20,4 +20,7 @@
   <ItemGroup>
     <None Remove="wwwroot\lib\angular\index.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
 </Project>

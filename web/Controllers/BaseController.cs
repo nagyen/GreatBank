@@ -10,10 +10,17 @@ namespace web.Controllers
 {
 	public abstract class BaseController : Controller
 	{
+        // cookies
+        private string _authCookie = "GB-Auth";
+		private string _userCookie = "GB-User";
+
+        // services
 		public AuthService Authservice { get; set; }
 
+        // constructor
 		public BaseController()
 		{
+            // set services
 			Authservice = new AuthService();
 		}
 
@@ -24,7 +31,7 @@ namespace web.Controllers
             CookieOptions options = new CookieOptions()
             {
                 Path = "/",
-                HttpOnly = false,
+                HttpOnly = true,
                 Secure = false,
                 Expires = DateTime.Now.AddHours(1)
             };
@@ -41,14 +48,20 @@ namespace web.Controllers
         // get authentication key
         public string GetAuthKey()
         {
-            return ReadCookies("GB-Auth");
+            return ReadCookies(_authCookie);
         }
 
-		// set authentication key
-        public void SetAuth(long userId, string key)
+		// get user id
+		public string GetCurrentUser()
 		{
-            WriteCookies("GB-User", userId.ToString());
-			WriteCookies("GB-Auth", key);
+            return ReadCookies(_userCookie);
+		}
+
+		// set authentication key
+        public void SetAuth(long userId, Guid key)
+		{
+            WriteCookies(_userCookie, userId.ToString());
+            WriteCookies(_authCookie, key.ToString());
 		}
 
 		// check if user is authenticated

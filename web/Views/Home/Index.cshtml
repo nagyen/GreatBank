@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Great Bank";
+    ViewData["Title"] = "Home - Great Bank";
 }
 
 <h1>Welcome to Great Bank!</h1>
@@ -7,6 +7,7 @@
 	<h2 ng-if="!status.Register">Login </h2>
     <h2 ng-if="status.Register">Register</h2>
 	<span class="text-danger" ng-bind="status.ValidatationErrors"></span>
+    <span class="text-success" ng-bind="status.Instructions"></span>
 	<form name="frm">
 	    <div class="form-group">
 		  <label for="Username">User Name:</label>
@@ -17,7 +18,7 @@
 		  <input type="password" class="form-control" id="pwd" ng-model="model.Password" required>
 		</div>
 		<div class="form-group" ng-if="status.Register">
-          <label for="cpwd">Password:</label>
+          <label for="cpwd">Confirm Password:</label>
           <input type="password" class="form-control" id="cpwd" ng-model="model.ConfirmPassword" required>
         </div>
 		<div ng-if="!status.Register">      

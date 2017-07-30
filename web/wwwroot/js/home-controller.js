@@ -10,15 +10,52 @@
 
     // function to login user
     $scope.login = function(){
+
+        $scope.status.Instructions = ""
         var model = $scope.model;
-        console.log($scope.frm.$valid);
         //check if form valid
         if($scope.frm.$valid) {
 
             // login
-            $http.post("/home/login", model)
+            $http.post("/auth/login", model)
             .success(function(res) {
-                console.log("response");
+                if(res.code != undefined && res.code != 0)
+                {
+                    $scope.status.ValidatationErrors = res.text;
+                }else {
+                    window.location = res.redirect;
+                }
+            })
+
+        }
+        else {
+            $scope.status.ValidatationErrors = "Please fill all required fields."
+        }
+    }
+
+    // function to register user
+    $scope.register = function(){
+        var model = $scope.model;
+        //check if form valid
+        if($scope.frm.$valid) {
+
+            //check if both passwords match
+            if(model.Password != model.ConfirmPassword)
+            {
+                $scope.status.ValidatationErrors = "Passwords not matched."
+                return;
+            }
+
+            // login
+            $http.post("/auth/register", model)
+            .success(function(res) {
+                if(res.code != undefined && res.code != 0)
+                {
+                    $scope.status.ValidatationErrors = res.text;
+                }else {
+                    $scope.status.Instructions = "Registered Successfully! Please Login to continue."
+                    $scope.switchScreen(false);
+                }
             })
 
         }
@@ -31,5 +68,8 @@
     $scope.switchScreen = function(registerScreen) {
         $scope.status.Register = registerScreen;
         $scope.status.ValidatationErrors = "";
+        $scope.model.Username = "";
+        $scope.model.Password = "";
+        $scope.model.ConfirmPassword = ""
     }
 }]);
