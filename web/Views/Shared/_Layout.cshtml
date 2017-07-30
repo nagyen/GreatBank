@@ -13,6 +13,16 @@
         <div class="container">
             <div class="navbar-header">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Great Bank</a>
+				@{
+                    if((bool)ViewData["LoggedIn"])
+					{
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+	                            <a asp-area="" asp-controller="Auth" asp-action="Logout" >Logout</a>
+							</li>
+						</ul>
+					}
+				}
             </div>
 
         </div>

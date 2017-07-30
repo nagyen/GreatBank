@@ -1,5 +1,8 @@
 ﻿angular.module("app")
 .controller("HomeController", ["$scope", "$http", function($scope, $http){
+    //debug
+    $scope.DEBUG = false;
+
     // init status
     $scope.status = {
         Register: false,

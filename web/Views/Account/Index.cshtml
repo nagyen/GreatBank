@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Account - Great Bank";
+    ViewData["LoggedIn"] = true;
     var fullname = ViewData["FullName"];
 }
 
@@ -15,12 +16,50 @@
 							<div class="form-group">
                                 <label>Name:</label>
                                 <div class="view field-readonly">{{model.user.firstName}} {{model.user.lastName}}</div>
-							</div>
-							<div class="form-group">
-                                <label>Current Balance:</label>
-                                <div class="view field-readonly">{{model.currentBalance | currency}}</div>
-                            </div>
+							</div>                     
 						</div>
+						<div class="col-sm-4">
+                            <div class="form-group">
+	                            <label>Current Balance:</label>
+	                            <div class="view field-readonly">{{model.currentBalance | currency}}</div>
+                            </div>
+						</div>                  
+					</div>
+					<div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                              <label for="transaction">Record Transaction:</label>
+                              <select class="form-control" id="transaction" ng-model="model.transactionType">
+                                <option value="">Please Select</option>
+                                <option value="deposit">Deposit</option>
+                                <option value="withdraw">Withdrawal</option>
+                              </select>
+                            </div>
+                        </div>
+						<div class="col-sm-4">
+							<div class="form-group">
+							  <label for="amount">Amount:</label>
+							  <input type="number" class="form-control" id="amount" ng-model="model.transactionAmount" min="0">
+							</div>
+						</div>
+						<a href="javascript:;;" class="btn btn-primary" ng-click="recordTransaction()" style="margin-top:24px;">Submit</a>
+					</div>
+					<span class="text-danger" ng-bind="status.validationErrors"></span>
+					<!--Alert Modal -->
+					<div id="alertModel" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-body">
+					        <p ng-bind="status.alert"></p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+
+					  </div>
 					</div>
 		      </div>
 		    </div>
@@ -28,23 +67,28 @@
 			<div class="panel panel-primary">
               <div class="panel-heading">Transaction History</div>
               <div class="panel-body">
+					<div class="btn-group" role="group" aria-label="Basic example">
+					  <button type="button" class="btn btn-default" ng-click="refreshTransactions(model.transactionsPage - 1)" ng-disabled="model.transactionsPage == 1"><span class="glyphicon glyphicon-menu-left"></span>Prev</button>
+					  <button type="button" class="btn btn-default">{{model.transactionsPage}}</button>
+					  <button type="button" class="btn btn-default" ng-click="refreshTransactions(model.transactionsPage +  1)" ng-disabled="model.transactions.length < 10">Next<span class="glyphicon glyphicon-menu-right"></span></button>
+					</div>
                     <table class="table table-stripped">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>PrevBalance</th>
-                                <th>CurrentBalance</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Amount</th>
+                                <th class="text-center">Previous Balance</th>
+                                <th class="text-center">New Balance</th>
 							</tr>
 						</thead>
 						<tbody>
                         <tr ng-repeat="trans in model.transactions">
                             <td>{{trans.date}}</td>
-                            <td>{{trans.type}}</td>
-                            <td>{{trans.amount}}</td>
-                            <td>{{trans.prevBalance}}</td>
-                            <td>{{trans.currentBalance}}</td>
+                            <td class="text-center">{{trans.type}}</td>
+                            <td class="text-center">{{trans.amount}}</td>
+                            <td class="text-center">{{trans.prevBalance}}</td>
+                            <td class="text-center">{{trans.currentBalance}}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -53,7 +97,7 @@
 		</div>
 	</div>
 
-	<pre>{{model | json}}</pre>
+	<pre ng-if="DEBUG">{{model | json}}</pre>
 </div>
 
 

@@ -26,7 +26,7 @@ namespace web.Controllers
             }
             var user = UserTransactionService.GetUser(GetCurrentUser());
             ViewData["FullName"] = $"{user.FirstName} {user.LastName}";
-            return View();
+			return View();
         }
 
         // get user account details
@@ -75,7 +75,8 @@ namespace web.Controllers
         }
 
 		// deposit transactions
-        public IActionResult Deposit(decimal amount)
+        [HttpPost]
+        public IActionResult Deposit([FromBody]decimal amount)
 		{
 			if (!CheckAccess())
 			{
@@ -90,7 +91,8 @@ namespace web.Controllers
 		}
 
 		// withdraw transaction
-        public IActionResult Withdraw(decimal amount)
+        [HttpPost]
+        public IActionResult Withdraw([FromBody]decimal amount)
 		{
 			if (!CheckAccess())
 			{

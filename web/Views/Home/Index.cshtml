@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home - Great Bank";
+    ViewData["LoggedIn"] = false;
 }
 
 <h1>Welcome to Great Bank!</h1>
@@ -8,52 +9,55 @@
     <h2 ng-if="status.Register">Register</h2>
 	<span class="text-danger" ng-bind="status.ValidatationErrors"></span>
     <span class="text-success" ng-bind="status.Instructions"></span>
-	<form name="frm">
-		
-		<div ng-if="!status.Register">
-            <div class="form-group">
-	          <label for="Username">User Name:</label>
-	          <input type="text" class="form-control" id="Username" ng-model="model.Username" required>
-	        </div>
-	        <div class="form-group">
-	          <label for="pwd">Password:</label>
-	          <input type="password" class="form-control" id="pwd" ng-model="model.Password" required>
-	        </div>      
-            <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="login()">Login</a>
-            <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(true)">Register</a>
-		</div>      
+	<div class="row">
+        <div class="col-sm-4">
+			<form name="frm">
+		        <div ng-if="!status.Register">
+		            <div class="form-group">
+		              <label for="Username">User Name:</label>
+		              <input type="text" class="form-control" id="Username" ng-model="model.Username" required>
+		            </div>
+		            <div class="form-group">
+		              <label for="pwd">Password:</label>
+		              <input type="password" class="form-control" id="pwd" ng-model="model.Password" required>
+		            </div>      
+		            <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="login()">Login</a>
+		            <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(true)">Register</a>
+		        </div>      
 
-		<div ng-if="status.Register">
-            <div class="form-group">
-		      <label for="Username">User Name:</label>
-	          <input type="text" class="form-control" id="Username" ng-model="model.Username" required>
-	        </div>
-			<div class="form-group">
-              <label for="FirstName">First Name:</label>
-              <input type="text" class="form-control" id="FirstName" ng-model="model.FirstName" required>
-            </div>
-			<div class="form-group">
-              <label for="LastName">Last Name:</label>
-              <input type="text" class="form-control" id="LastName" ng-model="model.LastName" required>
-            </div>
-	        <div class="form-group">
-	          <label for="pwd">Password:</label>
-	          <input type="password" class="form-control" id="pwd" ng-model="model.Password" required>
-	        </div>
-	        <div class="form-group" ng-if="status.Register">
-	          <label for="cpwd">Confirm Password:</label>
-	          <input type="password" class="form-control" id="cpwd" ng-model="model.ConfirmPassword" required>
-	        </div>
-	        <div ng-if="!status.Register">      
-	            <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="login()">Login</a>
-	            <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(true)">Register</a>
-	        </div>  
-            <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="register()">Register</a>
-            <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(false)">Login</a>
+		        <div ng-if="status.Register">
+		            <div class="form-group">
+		              <label for="Username">User Name:</label>
+		              <input type="text" class="form-control" id="Username" ng-model="model.Username" required>
+		            </div>
+		            <div class="form-group">
+		              <label for="FirstName">First Name:</label>
+		              <input type="text" class="form-control" id="FirstName" ng-model="model.FirstName" required>
+		            </div>
+		            <div class="form-group">
+		              <label for="LastName">Last Name:</label>
+		              <input type="text" class="form-control" id="LastName" ng-model="model.LastName" required>
+		            </div>
+		            <div class="form-group">
+		              <label for="pwd">Password:</label>
+		              <input type="password" class="form-control" id="pwd" ng-model="model.Password" required>
+		            </div>
+		            <div class="form-group" ng-if="status.Register">
+		              <label for="cpwd">Confirm Password:</label>
+		              <input type="password" class="form-control" id="cpwd" ng-model="model.ConfirmPassword" required>
+		            </div>
+		            <div ng-if="!status.Register">      
+		                <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="login()">Login</a>
+		                <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(true)">Register</a>
+		            </div>  
+		            <a href="javascript:;;" type="button" class="btn btn-primary" ng-click="register()">Register</a>
+		            <a href="javascript:;;" type="button" class="btn btn-link" ng-click="switchScreen(false)">Login</a>
+		        </div>
+		    </form>
 		</div>
-	    
-	</form>
-	<pre>{{model | json}}</pre>
+	</div>
+
+	<pre ng-if="DEBUG">{{model | json}}</pre>
 </div>
 
 

@@ -52,5 +52,12 @@ namespace web.Controllers
 			return ErrorResponse(res.Errors);
 		}
 
+        // logout
+        public IActionResult Logout()
+        {
+            this.Authservice.Logout(GetCurrentUser());
+            return Redirect("/");
+        }
+
 	}
 }
