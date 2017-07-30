@@ -51,3 +51,9 @@ The application is written using .NET Core(console app), ASP.NET MVC Core(web ap
     - $ docker run --rm -p 5000:5000 nyendluri/greatbank-web:latest
  
 Note: If port 5000 is not available please map to any other available port
+
+## Test data
+although you could register new user and create as many transactions as you like for testing, for quick demo purpose
+I have created a demo user and seeded the transactions table with 1000 records of random transactions.
+    - username: demouser
+    - password: demopass
