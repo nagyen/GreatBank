@@ -8,6 +8,9 @@ namespace console_app
     {
 		public static void Main(string[] args)
 		{
+			// seed tables for demo
+			core.SeedTables.Run();
+            // show home screen
 			new HomeScreen().Run();
 		}
     }

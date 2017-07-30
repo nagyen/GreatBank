@@ -2,4 +2,4 @@
 #publish web
 sh ./publish-web.sh
 #build dockerfile
-docker build -t nyendluri/greatbank-web:1.0 .
+docker build -t nyendluri/greatbank-web:latest .

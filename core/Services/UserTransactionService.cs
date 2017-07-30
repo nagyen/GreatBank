@@ -75,7 +75,7 @@ namespace core
 		}
 
         // funciton that creates a transaction for user
-        private TransactionModels.TransactionFeedback AddTransaction(long userId, decimal amount, Transaction.TransactionType transactionType)
+        public TransactionModels.TransactionFeedback AddTransaction(long userId, decimal amount, Transaction.TransactionType transactionType)
         {
 			// amount should be positive
 			if (amount < 0)

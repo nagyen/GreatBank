@@ -11,6 +11,7 @@ namespace console_app
             Console.Clear();
             Console.WriteLine("1. Register New User");
 			Console.WriteLine("2. Go to Home Screen\n");
+            Console.Write("\nPlease enter your choice: ");
 			if (Int32.TryParse(Console.ReadLine(), out int input))
 			{
 				switch (input)
