@@ -39,11 +39,9 @@ The application is written using .NET Core(console app), ASP.NET MVC Core(web ap
 ## Steps to run applications locally (Requires dotnet core environement installed on computer)
 * Console App: Run any of the following commands from project root 
     - $ sh run-console.sh
-    or
     - $ dotnet restore && cd ./console_app && dotnet run
 * Web App: Run any of the following commands from project root 
     - $ sh run-web.sh
-    or
     - $ dotnet restore && cd ./web && dotnet run
 
 ## Steps to run applications using docker (Requires docker installed on computer)
