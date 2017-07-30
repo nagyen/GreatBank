@@ -47,8 +47,9 @@ The application is written using .NET Core(console app), ASP.NET MVC Core(web ap
     - $ dotnet restore && cd ./web && dotnet run
 
 ## Steps to run applications using docker (Requires docker installed on computer)
-* Console App: Run any of the following commands from project root 
+* Console App: Run the following commands from project root 
     - $ docker run --rm -it nyendluri/greatbank-console:latest
-* Web App: Run any of the following commands from project root 
+* Web App: Run the following commands from project root 
     - $ docker run --rm -p 5000:5000 nyendluri/greatbank-web:latest
-    (if port 5000 is not available please map to any other available port)
+ 
+Note: If port 5000 is not available please map to any other available port
