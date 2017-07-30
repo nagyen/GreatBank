@@ -14,6 +14,7 @@ namespace console_app
             }
             Console.WriteLine("1. Login User");
             Console.WriteLine("2. Go to Home Screen\n");
+			Console.Write("\nPlease enter your choice: ");
 			if (Int32.TryParse(Console.ReadLine(), out int input))
 			{
 				switch (input)

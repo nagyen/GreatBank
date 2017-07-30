@@ -1,4 +1,6 @@
 ﻿using System;
+using core;
+using core.DbModels;
 
 namespace console_app
 {
