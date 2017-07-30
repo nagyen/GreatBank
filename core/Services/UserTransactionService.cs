@@ -46,7 +46,7 @@ namespace core
         {
             using(var db = new AppDbContext())
             {
-                return db.Transactions.Where(x => x.UserId == userId).ToList();
+                return db.Transactions.Where(x => x.UserId == userId).OrderByDescending(x => x.Date).ToList();
             }
         }
 
@@ -58,7 +58,7 @@ namespace core
             var startFrom = (page - 1)  * limit;
 			using (var db = new AppDbContext())
 			{
-                return db.Transactions.Where(x => x.UserId == userId).Skip(startFrom).Take(limit).OrderByDescending(x => x.Date).ToList();
+                return db.Transactions.Where(x => x.UserId == userId).OrderByDescending(x => x.Date).Skip(startFrom).Take(limit).ToList();
 			}
 		}
 
