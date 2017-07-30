@@ -86,9 +86,9 @@
                         <tr ng-repeat="trans in model.transactions">
                             <td>{{trans.date}}</td>
                             <td class="text-center">{{trans.type}}</td>
-                            <td class="text-center">{{trans.amount}}</td>
-                            <td class="text-center">{{trans.prevBalance}}</td>
-                            <td class="text-center">{{trans.currentBalance}}</td>
+                            <td class="text-center">{{trans.amount | currency}}</td>
+                            <td class="text-center">{{trans.prevBalance | currency}}</td>
+                            <td class="text-center">{{trans.currentBalance | currency}}</td>
 						</tr>
 						</tbody>
 					</table>
