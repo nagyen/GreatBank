@@ -70,6 +70,8 @@
         $scope.status.ValidatationErrors = "";
         $scope.model.Username = "";
         $scope.model.Password = "";
+        $scope.model.FirstName = "";
+        $scope.model.LastName = "";
         $scope.model.ConfirmPassword = ""
     }
 }]);

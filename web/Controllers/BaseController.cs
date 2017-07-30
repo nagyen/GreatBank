@@ -52,9 +52,9 @@ namespace web.Controllers
         }
 
 		// get user id
-		public string GetCurrentUser()
+		public long GetCurrentUser()
 		{
-            return ReadCookies(_userCookie);
+            return long.Parse(ReadCookies(_userCookie));
 		}
 
 		// set authentication key
@@ -86,7 +86,7 @@ namespace web.Controllers
             });
         }
 		// error respose
-		public IActionResult SuccessResponse(string redirect)
+		public IActionResult SuccessResponse(string redirect = "")
 		{
 			return Json(new
 			{

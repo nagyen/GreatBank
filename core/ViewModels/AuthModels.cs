@@ -21,12 +21,21 @@ namespace core
             public long UserId { get; set; }
 		}
 
-        // register/login user
-        public class LoginRegister
+        // login user
+        public class Login
         {
             public string Username { get; set; }
             public string Password { get; set; }
-            public string ConfirmPassword { get; set; }
         }
+
+		// register user
+		public class Register
+		{
+			public string Username { get; set; }
+			public string FirstName { get; set; }
+			public string LastName { get; set; }
+			public string Password { get; set; }
+			public string ConfirmPassword { get; set; }
+		}
     }
 }

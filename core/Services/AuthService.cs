@@ -38,6 +38,7 @@ namespace core
 
                 // if no errors add user
                 newuser.Id = 0;
+                newuser.CreateDateTime = DateTime.Now;
                 db.Users.Add(newuser);
                 db.SaveChanges();
 
@@ -53,7 +54,7 @@ namespace core
         // function to login user
         public AuthModels.LoginFeedback Login(string username, string password)
         {
-			// check if valid user detials
+			// check if valid user details
 			if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
 			{
 				return new AuthModels.LoginFeedback
@@ -92,8 +93,10 @@ namespace core
                 var auth = new Auth
                 {
                     UserId = user.Id,
-                    AuthKey = Guid.NewGuid()
+                    AuthKey = Guid.NewGuid(),
+                    CreateDateTime = DateTime.Now
                 };
+
                 db.Auths.Add(auth);
 				db.SaveChanges();
 

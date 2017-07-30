@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using core.DbModels;
+
 namespace core
 {
     public class TransactionModels

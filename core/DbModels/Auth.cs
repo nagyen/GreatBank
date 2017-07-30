@@ -10,5 +10,6 @@ namespace core.DbModels
         public long Id { get; set; }
         public long UserId { get; set; }
         public Guid AuthKey { get; set; }
+		public DateTime CreateDateTime { get; set; }
     }
 }

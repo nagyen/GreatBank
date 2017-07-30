@@ -39,3 +39,25 @@ textarea {
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
+
+/* read only fields */
+.field-readonly {
+    display: block;
+    border: 1px solid #dbd9d9;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    padding: 6px 20px;
+    min-height: 35px;
+    width: 100%;
+    background-color: #EDF1F2;
+}
+.view {
+    display: block;
+    border: 1px solid #dbd9d9;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    padding: 6px 20px;
+    min-height: 35px;
+    width: 100%;
+    background-color: #fafafa;
+}

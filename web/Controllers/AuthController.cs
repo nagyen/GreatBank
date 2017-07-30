@@ -9,7 +9,7 @@ namespace web.Controllers
     public class AuthController : BaseController
     {
 		[HttpPost]
-		public IActionResult Login([FromBody]AuthModels.LoginRegister login)
+		public IActionResult Login([FromBody]AuthModels.Login login)
 		{
 			// login 
 			var res = this.Authservice.Login(login.Username, login.Password);
@@ -25,7 +25,7 @@ namespace web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Register([FromBody]AuthModels.LoginRegister register)
+        public IActionResult Register([FromBody]AuthModels.Register register)
 		{
             // check passwords
             if(register.Password != register.ConfirmPassword)
@@ -37,7 +37,9 @@ namespace web.Controllers
             var newuser = new core.DbModels.User
             {
                 Username = register.Username,
-                Password = register.Password
+                Password = register.Password,
+                FirstName = register.FirstName,
+                LastName = register.LastName
             };
 
 			// register user 
